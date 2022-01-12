@@ -9,7 +9,7 @@ module.exports = function(passport){
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         // callbackURL: "https://zakk-todoapp.herokuapp.com/auth/google/dashboard"
-        callbackURL: "http://localhost:3000/auth/google/dashboard"
+        callbackURL: "http://localhost:3000/auth/google/dashboard" || "https://zakk-todoapp.herokuapp.com/auth/google/dashboard"
       },
       function(accessToken, refreshToken, profile, cb) {
         User.findOne({
