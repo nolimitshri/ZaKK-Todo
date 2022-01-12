@@ -38,7 +38,7 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: false
   })
 );
 
@@ -63,6 +63,7 @@ app.use(methodOverride("_method"));
 // Routes
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
+app.use("/dashboard", require("./routes/dashboard_users"));
 
 const PORT = process.env.PORT || 3000;
 

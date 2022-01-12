@@ -70,7 +70,7 @@ const renderRegisterPOST = async(req, res) => {
 // Login Page - POST
 const loginPOST = async(req, res, next) => {
     passport.authenticate('local', {
-        successRedirect: '/dashboard',
+        successRedirect: `/dashboard`,
         failureRedirect: '/users/login',
         failureFlash: true
     })(req, res, next);

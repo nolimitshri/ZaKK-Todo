@@ -27,7 +27,8 @@
 
 
                 <div class="col-12">
-                    <input type="submit" name="btn" value="Save" class="btn btn-primary">
+                    <!-- <input type="submit" name="btn" value="Save" class="btn btn-primary"> -->
+                    <button type="submit" class="btn btn-primary">Save</button>
                   </div>
                   
                   <div class="col-12">
@@ -53,14 +54,14 @@
         <% if(todoItem.description.length <= 44) { %>
           <p class="card-text" style="color: rgb(236, 223, 223);"><%= todoItem.description %> </p>
         <% } else { %>   
-        <p class="card-text" style="color: rgb(236, 223, 223);"><%= todoItem.description.slice(0,45) + '  ...' %> <a href="/dashboard/fullView/<%= todoItem._id %>">Read More</a></p>
+        <p class="card-text" style="color: rgb(236, 223, 223);"><%= todoItem.description.slice(0,45) + '  ...' %> <a href="/dashboard/<%= user.name %>/fullView/<%= todoItem._id %>">Read More</a></p>
         <% } %> 
         <p class="card-text">Created On: <%= todoItem.updatedAt.toLocaleDateString('en-GB') %> <br> Time: <%= todoItem.updatedAt.toLocaleTimeString('en-GB') %></p>
         <p class="card-text"></p>
         <!-- FORM for DELETE -->
-        <form action="/dashboard?_method=DELETE" method="post">
+        <form action="/dashboard/?_method=DELETE" method="post">
           <input type="hidden" name="todoID" value="<%= todoItem._id %>">
-          <a href="/dashboard/update/<%= todoItem._id %> " class="btn btn-md btn-success center mx-1">Update</a>
+          <a href="/dashboard/<%= user.name %>/update/<%= todoItem._id %>" class="btn btn-md btn-success center mx-1">Update</a>
           <button type="submit" class="btn btn-danger btn-md mx-1">Delete</button>
         </form>
       </div>

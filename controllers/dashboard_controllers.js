@@ -35,7 +35,6 @@ const renderAfterSaved = async(req, res) => {
         });
         todosArray = [];
     } else {
-    if(req.body.btn === "Save"){
         const userId = req.user._id;
         const name = req.body.todoName;
         const desc = req.body.todoDesc;
@@ -51,7 +50,6 @@ const renderAfterSaved = async(req, res) => {
         }catch(e){
         console.log(e);  
         }  
-    }
     }
 };
 
