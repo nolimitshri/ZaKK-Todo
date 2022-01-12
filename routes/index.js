@@ -25,12 +25,12 @@ router.get("/dashboard", ensureAuthenticated, renderDashboard);
 router.post("/dashboard", ensureAuthenticated, renderAfterSaved);
 
 // Delete the todo
-router.post("/delete", ensureAuthenticated, deleteTodo);
+router.delete("/dashboard", ensureAuthenticated, deleteTodo);
 
 // Render Update Page
 router.get("/dashboard/update/:todoID", ensureAuthenticated, renderUpdate);
 
-router.post("/dashboard/update/:todoID", ensureAuthenticated, renderUpdateSaved);
+router.put("/dashboard/update/:todoID", ensureAuthenticated, renderUpdateSaved);
 
 // Full View of Todo
 router.get("/dashboard/fullView/:todoID", ensureAuthenticated, renderFullView);

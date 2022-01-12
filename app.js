@@ -6,6 +6,8 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 
+const methodOverride = require("method-override");
+
 const app = express();
 
 // Passport Config (local)
@@ -54,6 +56,9 @@ app.use(function(req, res, next) {
   res.locals.error = req.flash('error');
   next();
 });
+
+// Method Overriding
+app.use(methodOverride("_method"));
 
 // Routes
 app.use('/', require('./routes/index.js'));

@@ -57,10 +57,11 @@
         <% } %> 
         <p class="card-text">Created On: <%= todoItem.updatedAt.toLocaleDateString('en-GB') %> <br> Time: <%= todoItem.updatedAt.toLocaleTimeString('en-GB') %></p>
         <p class="card-text"></p>
-        <form action="/delete" method="post" class="row row-cols-lg-auto g-3 justify-content-center align-items-center">
+        <!-- FORM for DELETE -->
+        <form action="/dashboard?_method=DELETE" method="post">
           <input type="hidden" name="todoID" value="<%= todoItem._id %>">
-          <input type="submit" name="btn" value="Delete" class="btn btn-danger btn-md mx-1">
           <a href="/dashboard/update/<%= todoItem._id %> " class="btn btn-md btn-success center mx-1">Update</a>
+          <button type="submit" class="btn btn-danger btn-md mx-1">Delete</button>
         </form>
       </div>
     </div>
