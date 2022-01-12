@@ -1,0 +1,36 @@
+<%- include("./partials/navbar"); %>
+
+
+  <!-- contents -->
+  <section>
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-lg-9 ">
+          <div class="card rounded-3">
+            <div class="card-body p-4">
+  
+              <h3 class="text-center my-3 pb-3">Your Todo</h3>
+
+              <h6 class="text-left my-3" style="color: rgb(219, 202, 202);">Created On: <%= todo.updatedAt.toLocaleDateString("en-GB") %> </h6>
+              <h6 class="text-left my-3" style="color: rgb(219, 202, 202);">Time: <%= todo.updatedAt.toLocaleTimeString("en-GB") %> </h6>
+                
+              <h3 class="text-left my-3" style="color: rgb(255, 255, 255); text-decoration: underline;">Title</h3>
+              <h4 class="text-left my-3" style="color: rgb(219, 202, 202);"><%= todo.name %></h4>
+
+              <h3 class="text-left my-3" style="color: rgb(255, 255, 255); text-decoration: underline;">Description</h3>
+              <h4 class="text-left my-3" style="color: rgb(219, 202, 202);"><%= todo.description %></h4>
+                <form action="/delete" method="post" class="row row-cols-lg-auto g-3 justify-content-center align-items-center">
+                    <input type="hidden" name="todoID" value="<%= todo._id %>">
+                    <input type="submit" name="btn" value="Delete" class="btn btn-danger btn-md mx-1">
+                    <a href="/dashboard/update/<%= todo._id %> " class="btn btn-md btn-success center mx-1">Update</a>
+                    <a href="/dashboard" class="btn btn-md btn-primary center mx-1">Back To Dashboard</a>
+                  </form>
+  
+                <div class="col-4">
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

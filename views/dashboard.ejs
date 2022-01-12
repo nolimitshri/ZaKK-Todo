@@ -1,0 +1,80 @@
+<%- include("./partials/navbar"); %>
+
+  <!-- contents -->
+  <section>
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-lg-9 ">
+          <div class="card rounded-3">
+            <div class="card-body p-4">
+  
+              <h4 class="text-center my-3 pb-3">To Do App</h4>
+              <div class="col-12">
+                <%- include("./partials/messages"); %>
+              </div>
+              <form method="post" action="/dashboard" class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
+                <div class="col-12">
+                  <div class="form-outline">
+                    <input autocomplete="off" type="text" id="form1" name="todoName" class="form-control" placeholder="Enter task title here" />
+                  </div>
+                </div>
+                
+                <div class="col-12">
+                  <div class="form-outline">
+                    <textarea autocomplete="off" name="todoDesc" id="form1" cols="30" rows="1" class="form-control" placeholder="Enter task description here"></textarea>
+                  </div>
+                </div>
+
+
+                <div class="col-12">
+                    <input type="submit" name="btn" value="Save" class="btn btn-primary">
+                  </div>
+                  
+                  <div class="col-12">
+                  <!-- <input type="submit" name="btn" value="Get Tasks" class="btn btn-info"> -->
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class=" row d-flex justify-content-center align-items-center">
+    <% if(todoArray.length === 0) {%>
+      <h3 class="text-center">No Todos to show!!</h3>
+      <h4 class="text-center">Create new todos above</>
+     <% } %>  
+    <% todoArray.forEach((todoItem) => { %>
+    <div class="card mx-1 my-2" style="width: 18rem; height: auto;">
+      <div class="card-body">
+        <h5 class="card-title" style="color: rgb(255, 254, 254);"> <%= todoItem.name %>   </h5>
+        <% if(todoItem.description.length <= 44) { %>
+          <p class="card-text" style="color: rgb(236, 223, 223);"><%= todoItem.description %> </p>
+        <% } else { %>   
+        <p class="card-text" style="color: rgb(236, 223, 223);"><%= todoItem.description.slice(0,45) + '  ...' %> <a href="/dashboard/fullView/<%= todoItem._id %>">Read More</a></p>
+        <% } %> 
+        <p class="card-text">Created On: <%= todoItem.updatedAt.toLocaleDateString('en-GB') %> <br> Time: <%= todoItem.updatedAt.toLocaleTimeString('en-GB') %></p>
+        <p class="card-text"></p>
+        <form action="/delete" method="post" class="row row-cols-lg-auto g-3 justify-content-center align-items-center">
+          <input type="hidden" name="todoID" value="<%= todoItem._id %>">
+          <input type="submit" name="btn" value="Delete" class="btn btn-danger btn-md mx-1">
+          <a href="/dashboard/update/<%= todoItem._id %> " class="btn btn-md btn-success center mx-1">Update</a>
+        </form>
+      </div>
+    </div>
+    <% }) %>
+
+  </div>
+
+
+
+
+
+  <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+  </script>
+
